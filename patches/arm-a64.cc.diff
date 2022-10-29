@@ -1,5 +1,5 @@
---- arm-a64.cc	2022-10-29 15:11:54.914816800 +0300
-+++ arm-a64.cc.new	2022-10-29 15:13:04.854816800 +0300
+--- qemu-2.10.0/disas/arm-a64.cc
++++ qemu-2.10.0/disas/arm-a64.cc
 @@ -17,8 +17,8 @@
   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
   */
