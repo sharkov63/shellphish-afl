@@ -58,12 +58,12 @@ mkdir -p bin/fuzzer-libs
 cd bin/fuzzer-libs
 
 LIBS="libc-bin libstdc++6"
-fetcharch armhf ubuntu trusty
-fetcharch armel debian jessie
-fetcharch powerpc ubuntu trusty
-fetcharch arm64 ubuntu trusty
-fetcharch i386 ubuntu trusty
-fetcharch mips debian stretch
-fetcharch mipsel debian stretch
+#fetcharch armhf ubuntu jammy
+#fetcharch armel debian jessie
+#fetcharch powerpc ubuntu jammy
+#fetcharch arm64 ubuntu jammy
+#fetcharch i386 ubuntu jammy
+#fetcharch mips debian stretch
+#fetcharch mipsel debian stretch
 
 # mini debootstrap 
