@@ -1,5 +1,5 @@
---- a/qemu_mode/build_qemu_support.sh
-+++ b/qemu_mode/build_qemu_support.sh
+--- qemu_mode/build_qemu_support.sh
++++ qemu_mode/build_qemu_support.sh
 @@ -22,6 +22,10 @@
  # will be written to ../afl-qemu-trace.
  #
@@ -63,39 +63,39 @@
 -# --enable-pie seems to give a couple of exec's a second performance
 -# improvement, much to my surprise. Not sure how universal this is..
 +CPU_TARGETS=$@
-+
-+for CPU_TARGET in $CPU_TARGETS; do
-+
-+    # --enable-pie seems to give a couple of exec's a second performance
-+    # improvement, much to my surprise. Not sure how universal this is..
-+
-+    CFLAGS="-O3 -ggdb" ./configure --disable-system --python=`which python2` \
-+      --enable-linux-user --disable-gtk --disable-sdl --disable-vnc \
-+      --target-list="${CPU_TARGET}-linux-user" --enable-pie --enable-kvm || exit 1
-+
-+    echo "[+] Configuration complete."
  
 -CFLAGS="-O3 -ggdb" ./configure --disable-system \
 -  --enable-linux-user --disable-gtk --disable-sdl --disable-vnc \
 -  --target-list="${CPU_TARGET}-linux-user" --enable-pie --enable-kvm || exit 1
-+    echo "[*] Attempting to build QEMU (fingers crossed!)..."
++for CPU_TARGET in $CPU_TARGETS; do
  
 -echo "[+] Configuration complete."
-+    make || exit 1
++    # --enable-pie seems to give a couple of exec's a second performance
++    # improvement, much to my surprise. Not sure how universal this is..
  
 -echo "[*] Attempting to build QEMU (fingers crossed!)..."
-+    echo "[+] Build process successful!"
++    CFLAGS="-O3 -ggdb" ./configure --disable-system --python=`which python2` \
++      --enable-linux-user --disable-gtk --disable-sdl --disable-vnc \
++      --target-list="${CPU_TARGET}-linux-user" --enable-pie --enable-kvm || exit 1
  
 -make || exit 1
-+    echo "[*] Copying binary..."
++    echo "[+] Configuration complete."
  
 -echo "[+] Build process successful!"
-+    cp -f "${CPU_TARGET}-linux-user/qemu-${CPU_TARGET}" "../../afl-qemu-trace" || exit 1
++    echo "[*] Attempting to build QEMU (fingers crossed!)..."
  
 -echo "[*] Copying binary..."
-+    mkdir -p ../../tracers/$CPU_TARGET
++    make || exit 1
  
 -cp -f "${CPU_TARGET}-linux-user/qemu-${CPU_TARGET}" "../../afl-qemu-trace" || exit 1
++    echo "[+] Build process successful!"
++
++    echo "[*] Copying binary..."
++
++    cp -f "${CPU_TARGET}-linux-user/qemu-${CPU_TARGET}" "../../afl-qemu-trace" || exit 1
++
++    mkdir -p ../../tracers/$CPU_TARGET
++
 +    cp -f "${CPU_TARGET}-linux-user/qemu-${CPU_TARGET}" "../../tracers/${CPU_TARGET}/afl-qemu-trace" || exit 1
 +
 +done
