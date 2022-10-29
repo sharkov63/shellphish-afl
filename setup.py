@@ -19,6 +19,7 @@ QEMU_PATCHES = [
     "patches/syscall_sockios.diff",
     "patches/stime.diff",
     "patches/gluster.diff",
+    "patches/arm-a64.cc.diff",
 ]
 MULTIARCH_LIBRARY_PATH = os.path.join("bin", "fuzzer-libs")
 AFL_QEMU_MODE_PATCH = AFL_UNIX_INSTALL_PATH+"/qemu_mode/patches/"

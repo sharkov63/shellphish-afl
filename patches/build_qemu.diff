@@ -28,7 +28,7 @@
  cd qemu-$VERSION || exit 1
  
  echo "[*] Applying patches..."
-@@ -132,26 +132,62 @@ patch -p1 <../patches/elfload.diff || exit 1
+@@ -132,26 +132,63 @@ patch -p1 <../patches/elfload.diff || exit 1
  patch -p1 <../patches/cpu-exec.diff || exit 1
  patch -p1 <../patches/syscall.diff || exit 1
  
@@ -51,6 +51,7 @@
 +if [ $apply_patch_18_04 -eq 1 ]; then
 +    patch -p1 <../patches/memfd.diff
 +    patch -p1 <../patches/gluster.diff
++    patch -p1 <../patches/arm-a64.cc.diff
 +fi
 +if [ $apply_patches_above_18_04 -eq 1 ]; then
 +    patch -p1 <../patches/gettid.diff
@@ -102,7 +103,7 @@
  
  cd ..
  ls -l ../afl-qemu-trace || exit 1
-@@ -166,29 +202,29 @@ if [ "$ORIG_CPU_TARGET" = "" ]; then
+@@ -166,29 +203,29 @@ if [ "$ORIG_CPU_TARGET" = "" ]; then
  
    make >/dev/null || exit 1
  
